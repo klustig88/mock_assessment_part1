@@ -5,6 +5,8 @@ get '/' do
   erb :index
 end
 
+
+
 #----------- SESSIONS -----------
 
 get '/sessions/new' do
@@ -56,3 +58,31 @@ post '/users' do
     erb :sign_up
   end
 end
+
+
+#----------Skills----------
+
+get '/skills/new' do
+  erb :skill_new
+end
+
+post '/skills/new' do 
+  @skill = Skill.create(name: params[:name], context: params[:context])
+  redirect ('/')
+end
+
+
+#---------Proficiencies--------
+
+get '/proficiency/new' do
+  erb :proficiency_new
+end
+
+post '/proficiency/new' do
+  @profic = Proficiency.create(years: params[:years], formal: params[:formal], user_id: session[:user_id])
+  redirect to ('/')
+end
+
+
+
+
